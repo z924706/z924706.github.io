@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>战略合作文书签署网</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #fdf6ff 0%, #e8f0ff 100%);
+            font-family: 'Inter', sans-serif;
+            color: #4b5563;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(90deg, #ec4899 0%, #f97316 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 6rem); /* 增大字体大小范围 */
+            margin: 0;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+       .main-content {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+       .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            width: 100%;
+            max-width: 1200px;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+       .image-container img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            max-height: 200px;
+            object-fit: cover; /* 让图片覆盖容器 */
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+            filter: grayscale(30%);
+        }
+
+       .image-container img:hover {
+            transform: scale(1.1); /* 图片放大 */
+            filter: grayscale(0%);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+       .text-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+            width: 100%;
+            max-width: 800px;
+        }
+
+       .text-container p {
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+
+       .text-container p strong {
+            color: #ec4899;
+            font-weight: 600;
+        }
+
+       .text-container ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+       .text-container ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        button#surpriseBtn {
+            background: linear-gradient(90deg, #ec4899 0%, #f97316 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        button#surpriseBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+       .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s;
+        }
+
+       .modal-content {
+            background-color: #f9fafb;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            animation: slideIn 0.3s;
+        }
+
+       .close {
+            color: #9ca3af;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+       .close:hover,
+       .close:focus {
+            color: #4b5563;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            background: linear-gradient(90deg, #ec4899 0%, #f97316 100%);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>与陈欣怡战略合作百日白皮书（含机密附录）</h1>
+    </header>
+    <div class="main-content">
+        <div class="image-container">
+            <img src="https://s21.ax1x.com/2025/04/16/pEh9YKx.jpg" alt="甲方">
+            <img src="https://s21.ax1x.com/2025/04/16/pEh9daD.jpg" alt="国会">
+            <img src="https://s21.ax1x.com/2025/04/16/pEh9Gx1.jpg" alt="乙方">
+        </div>
+        <div class="text-container">
+            <p class="mb-6 leading-relaxed text-xl text-gray-800">致我方重要合作伙伴 <strong>陈欣怡女士</strong>：自 1 月 9 日双方以“牵手网络量子交流学”为由，进行友好沟通后，双方一直保留着良好的双边关系，不断磋商（监控录像存档编号NO.007），至今已累计 100 周日，不间断完成以下战略协作：</p>
+            <p class="mb-6 leading-relaxed text-xl text-gray-800"><strong>1. 吐槽前任行动</strong> 于网络次元空间建立临时据点，相互研读《前任史》《前任奇葩史》，实际完成但不限于：
+                <ul>
+                    <li>用前任哥的一半一半梗完成对话 N 条</li>
+                    <li>在《前任姐》画册插页批注打分「好看」</li>
+                    <li>发明「前任姐异常行为指数」与「前夫哥抠搜频率」的正相关公式</li>
+                </ul>
+            </p>
+            <p class="mb-6 leading-relaxed text-xl text-gray-800"><strong>2. 舌尖特工计划</strong> 在各大店铺前线达成多项突破：
+                <ul>
+                    <li>验证竞品酸奶碗+SUKi 碗味觉差异可行性（结论：竞品一般，差点意思）</li>
+                    <li>发现周末出游散步可作人体临时充电包（实战应用多次）</li>
+                    <li>成功借助 2 杯散装调酒完成「首次」出镜艺术（后被你放朋友成功缴获并查验）</li>
+                </ul>
+            </p>
+            <p class="mb-6 leading-relaxed text-xl text-gray-800"><strong>3. 友军朋友部的交友攻略实录</strong>
+                成功在你方战友交友期间战略预警，与我方共享的情报中荣获：
+                <ul>
+                    <li>最佳情感走向预测奖（只能说预测的太准了「准！」）</li>
+                    <li>最离谱逃避借口奖（「我打仗的时候都会回微信」原话存档）</li>
+                </ul>
+            </p>
+            <p class="mb-6 leading-relaxed text-xl text-gray-800"><strong>附录1：尚未坦白的 108 件小事</strong>
+                <ul>
+                    <li>2 天洗一次澡的公式，在不想洗澡的时刻会自动变异成 2.5 天</li>
+                    <li>唱《RAPPE》的时候，我吃着猪脚饭，最后一天加班加练学会的。</li>
+                    <li>JOJO水杯公司收购非常慢，强行借助领导力从员工手里收购的</li>
+                    <li>......</li>
+                </ul>
+            </p>
+            <p class="leading-relaxed text-xl text-gray-800"><strong>附录2：百日升级方案</strong> 拟开展「湿疹清除」（人体去污增香项目）、「反冷暴力联盟地下会议」（节假日长期出游行动），并申请将战略合作期限修改为「下一个 100 天试用期+自动续约若干年」</p>
+            <p class="leading-relaxed text-xl text-gray-800">即日生效，逾期不候。​——您的一号冤种合伙人（于第三次修改本文件时打翻我的瑞，键盘上残留的咖啡水渍构成摩斯密码：你遭重了）</p>
+        </div>
+        <button id="surpriseBtn">
+            点击这里前往VIP礼物通道😉
+        </button>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p class="text-xl text-gray-800">这是给你的湿疹！准备的小礼物🥰希望能一直快乐下去。你已获得乖乖的变香洁净套装一份，手动领取。</p>
+            <img src="https://s21.ax1x.com/2025/04/16/pEh9nbT.jpg" alt="礼物图片" class="w-full h-auto rounded-md mt-4">
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 陈欣怡战略合作文书签署网. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const surpriseBtn = document.getElementById('surpriseBtn');
+        const modal = document.getElementById('myModal');
+        const closeBtn = document.querySelector('.close');
+
+        surpriseBtn.addEventListener('click', () => {
+            modal.style.display = 'block';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>
+    
